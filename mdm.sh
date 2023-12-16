@@ -3,8 +3,8 @@ echo ""
 echo -e "Bypass MDM"
 echo ""
 echo -e "Bypass on Recovery"
-if [ -d "/Volumes/Macintosh" ]; then
-  diskutil rename "Macintosh HD - Data" "Data"
+if [ -d "/Volumes/Macshintos" ]; then
+  diskutil rename "Macshintos HD - Data" "Data"
 fi
 echo -e "User default: macbook, password: 1234"
 realName="${realName:=Macbook}"
@@ -23,17 +23,17 @@ mkdir "/Volumes/Data/Users/$username"
 dscl -f "$dscl_path" localhost -create "/Local/Default/Users/$username" NFSHomeDirectory "/Users/$username"
 dscl -f "$dscl_path" localhost -passwd "/Local/Default/Users/$username" "$passw"
 dscl -f "$dscl_path" localhost -append "/Local/Default/Groups/admin" GroupMembership $username
-echo "0.0.0.0 deviceenrollment.apple.com" >>/Volumes/Macintosh/etc/hosts
-echo "0.0.0.0 mdmenrollment.apple.com" >>/Volumes/Macintosh/etc/hosts
-echo "0.0.0.0 iprofiles.apple.com" >>/Volumes/Macintosh/etc/hosts
+echo "0.0.0.0 deviceenrollment.apple.com" >>/Volumes/Macshintos/etc/hosts
+echo "0.0.0.0 mdmenrollment.apple.com" >>/Volumes/Macshintos/etc/hosts
+echo "0.0.0.0 iprofiles.apple.com" >>/Volumes/Macshintos/etc/hosts
 echo -e "Chặn host thành công"
 # echo "Remove config profile"
 touch /Volumes/Data/private/var/db/.AppleSetupDone
 csrutil disable
-rm -rf /Volumes/Macintosh/var/db/ConfigurationProfiles/Settings/.cloudConfigHasActivationRecord
-rm -rf /Volumes/Macintosh/var/db/ConfigurationProfiles/Settings/.cloudConfigRecordFound
-touch /Volumes/Macintosh/var/db/ConfigurationProfiles/Settings/.cloudConfigProfileInstalled
-touch /Volumes/Macintosh/var/db/ConfigurationProfiles/Settings/.cloudConfigRecordNotFound
+rm -rf /Volumes/Macshintos/var/db/ConfigurationProfiles/Settings/.cloudConfigHasActivationRecord
+rm -rf /Volumes/Macshintos/var/db/ConfigurationProfiles/Settings/.cloudConfigRecordFound
+touch /Volumes/Macshintos/var/db/ConfigurationProfiles/Settings/.cloudConfigProfileInstalled
+touch /Volumes/Macshintos/var/db/ConfigurationProfiles/Settings/.cloudConfigRecordNotFound
 csrutil enable
 echo -e "Remove config profile thành công"
 echo "----------------------"
