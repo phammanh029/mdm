@@ -3,8 +3,8 @@ echo ""
 echo -e "Bypass MDM"
 echo ""
 echo -e "Bypass on Recovery"
-if [ -d "/Volumes/Macshintos" ]; then
-  diskutil rename "Macshintos HD - Data" "Data"
+if [ -d "/Volumes/Macshintos - Data" ]; then
+  diskutil rename "Macshintos - Data" "Data"
 fi
 echo -e "User default: macbook, password: 1234"
 realName="${realName:=Macbook}"
